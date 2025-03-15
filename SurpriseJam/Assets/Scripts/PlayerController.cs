@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LevelHandler _levelHandler;
 
     [SerializeField] float shotDuration = 0.07f;
+    
+    [SerializeField] private Healthbar _healthbar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
