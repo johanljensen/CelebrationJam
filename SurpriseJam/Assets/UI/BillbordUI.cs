@@ -5,6 +5,7 @@ public class BillbordUI : MonoBehaviour
 {
     private Transform mainCameraTransform;
     private Transform thisTransform;
+    [SerializeField] private bool FreezeHorizontalRotation = false;
 
     private void LateUpdate()
     {
@@ -17,6 +18,18 @@ public class BillbordUI : MonoBehaviour
         {
             thisTransform = transform;
         }
-        thisTransform.LookAt(mainCameraTransform.position);
+
+        if (!FreezeHorizontalRotation)
+        {
+            {
+                thisTransform.LookAt(mainCameraTransform.position);
+            }
+        }
+        else
+        {
+            Vector3 positionToLookAT = mainCameraTransform.position + thisTransform.position;
+            thisTransform.LookAt(-positionToLookAT);
+        }
+        
     }
 }

@@ -7,8 +7,7 @@
     <list default="true" id="111e8669-d6e6-4c3e-84a0-23b7c76b5997" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SurpriseJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SurpriseJam/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/BillbordUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/BillbordUI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,7 @@
       <updated>1742074298555</updated>
       <workItem from="1742074300954" duration="7000" />
       <workItem from="1742074847606" duration="18000" />
-      <workItem from="1742074884361" duration="1674000" />
+      <workItem from="1742074884361" duration="2777000" />
     </task>
     <servers />
   </component>
