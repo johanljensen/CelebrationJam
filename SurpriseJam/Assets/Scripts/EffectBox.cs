@@ -15,7 +15,7 @@ public class EffectBox : MonoBehaviour
         Debug.Log(other.transform.name + " touched me!");
         
         EffectWheel wheel = Instantiate(wheelPrefab, transform.position, Quaternion.identity).GetComponent<EffectWheel>();
-        wheel.GoodWheel(other.GetComponent<PlayerController>() != null);
+        wheel.GoodWheel(other.GetComponent<PlayerController>() != null, other.transform);
         
         DeleteME();
     }
