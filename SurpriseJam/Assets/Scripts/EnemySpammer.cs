@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class EnemySpammer : MonoBehaviour
@@ -18,8 +17,8 @@ public class EnemySpammer : MonoBehaviour
 
         if (_timer >= _timeBeforeSpawn)
         {
-            SpawnEnemy();
             _timer = 0;
+            SpawnEnemy();
         }
     }
 
