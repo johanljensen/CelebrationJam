@@ -14,10 +14,34 @@ public class EnemyEyEye : MonoBehaviour
 
     float timeSinceLastAttack = 0;
     bool touchingPlayer = false;
+    [SerializeField] Animator _animator;
+    [SerializeField] Collider _collider;
+    [SerializeField] SkinnedMeshRenderer _meshRend;
+    [SerializeField] Material _deathMat;
+    bool _dead;
+    [SerializeField] float _deathFadeTime = 1;
+    float _deathFadeTimer = 0;
+    bool fading;
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (_dead)
+        { 
+            if(fading)
+            {
+                _deathFadeTimer += Time.fixedDeltaTime;
+                float t = 1 - (_deathFadeTimer/ _deathFadeTime);
+                print("t" +t);
+                Color col= new Color(1, 1, 1, t);
+                print(col);
+                _meshRend.material.color = col;
+
+                if (t <= 0)
+                    Destroy(gameObject);
+            }
+            return;
+        }
         if (_player)
         {
             Vector3 dir = _player.position - transform.position;
@@ -44,10 +68,15 @@ public class EnemyEyEye : MonoBehaviour
 
     public bool TakeDamage(float damage)
     {
+
         _health -= damage;
         if (_health <= 0)
         {
-            StartCoroutine(DieNextFrame());
+            //StartCoroutine(DieNextFrame());
+            _animator.SetBool("Death", true);
+            _collider.enabled = false;
+            Destroy(_rb);
+            _dead = true;
             return true;
         }
         return false;
@@ -62,6 +91,13 @@ public class EnemyEyEye : MonoBehaviour
     public void SetPlayer(Transform player)
     {
         _player = player;
+    }
+
+    public void StartFading()
+    {
+        fading = true;
+
+        _meshRend.material = _deathMat;
     }
 
     private void OnCollisionEnter(Collision collision)
