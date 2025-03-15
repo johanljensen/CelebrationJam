@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyEyEye : MonoBehaviour
@@ -41,13 +42,21 @@ public class EnemyEyEye : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public bool TakeDamage(float damage)
     {
         _health -= damage;
         if (_health <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(DieNextFrame());
+            return true;
         }
+        return false;
+    }
+
+    IEnumerator DieNextFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
     }
 
     public void SetPlayer(Transform player)

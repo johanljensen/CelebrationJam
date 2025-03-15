@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _body;
     [SerializeField] LineRenderer _shootLine;
     [SerializeField] Transform _gunEnd;
+    [SerializeField] LevelHandler _levelHandler;
 
     [SerializeField] float shotDuration = 0.07f;
 
@@ -73,7 +74,13 @@ public class PlayerController : MonoBehaviour
             if (hit.transform.gameObject.tag == "Enemy")
             {
                 hit.rigidbody.AddForce(- hit.normal * _hitForce);
-                hit.transform.GetComponent<EnemyEyEye>().TakeDamage(_damage);
+                bool enemyDead = hit.transform.GetComponent<EnemyEyEye>().TakeDamage(_damage);
+
+                if (enemyDead)
+                {
+                    if (_levelHandler)
+                        _levelHandler.EnemyDied();
+                }
             }
         }
         else
