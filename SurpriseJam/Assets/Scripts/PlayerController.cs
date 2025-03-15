@@ -5,10 +5,10 @@ using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody _rb;
-    public float speed;
+    [SerializeField] float _speed;
 
-    Plane plane = new Plane(Vector3.up, Vector3.zero);
-    [SerializeField] GameObject body;
+    Plane _plane = new Plane(Vector3.up, Vector3.zero);
+    [SerializeField] GameObject _body;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,10 +20,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical"));
-        dir = dir.normalized;
-        Vector3 desiredPosition = transform.position + dir * Time.fixedDeltaTime * speed;
 
-        _rb.MovePosition(desiredPosition);
+        _rb.linearVelocity = dir.normalized * _speed;
 
        RotateBody();
     }
@@ -32,15 +30,15 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float distance = 0.0f;
-        if (plane.Raycast(ray, out distance))
+        if (_plane.Raycast(ray, out distance))
         {
-            Debug.Log("distance " + distance);
+            //Debug.Log("distance " + distance);
 
             //Get the point that is clicked
             Vector3 hitPoint = ray.GetPoint(distance);
 
             //Draw a debug ray to see where you are hitting
-            Debug.DrawRay(ray.origin, ray.direction * distance, Color.green);
+            //Debug.DrawRay(ray.origin, ray.direction * distance, Color.green);
 
             // create a direction vector (hitPoint => somePoint
             Vector3 direction = new Vector3(
@@ -51,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
             //Math to get angle
             float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            body.transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            _body.transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
         }
 
     }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4449397842986076332}
   - component: {fileID: 1565132845624820181}
   - component: {fileID: 2289003271914623333}
+  - component: {fileID: 3513638549325338809}
   m_Layer: 0
   m_Name: Plair
   m_TagString: Untagged
@@ -46,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da47df8de589faa4d80df9cfe9cf9bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  body: {fileID: 8539859702304691979}
+  _speed: 8
+  _body: {fileID: 8539859702304691979}
 --- !u!54 &2289003271914623333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -56,7 +57,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474046676591576105}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -71,10 +72,33 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!136 &3513638549325338809
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474046676591576105}
+  m_Material: {fileID: 13400000, guid: 62f2a116a4d5b75439b5962c0a127026, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7375724784625944924
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +110,6 @@ GameObject:
   - component: {fileID: 591645976766288019}
   - component: {fileID: 3253379653622090015}
   - component: {fileID: 7648669835735984239}
-  - component: {fileID: 7812742236618078984}
   m_Layer: 0
   m_Name: Man-glasses
   m_TagString: Untagged
@@ -162,27 +185,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7812742236618078984
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7375724784625944924}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8539859702304691979
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +196,6 @@ GameObject:
   - component: {fileID: 942118493576826297}
   - component: {fileID: 3096359110856299375}
   - component: {fileID: 6249569081794999900}
-  - component: {fileID: 3956234454138051294}
   m_Layer: 0
   m_Name: Boy-dy
   m_TagString: Untagged
@@ -271,26 +272,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3956234454138051294
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8539859702304691979}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
