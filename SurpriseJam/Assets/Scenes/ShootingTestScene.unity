@@ -562,10 +562,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BadMan
       objectReference: {fileID: 0}
-    - target: {fileID: 5927138070721468951, guid: 4242b2c017139e64da9b5d982f109505, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6483407806648931462, guid: 4242b2c017139e64da9b5d982f109505, type: 3}
       propertyPath: _player
       value: 
