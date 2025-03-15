@@ -66,6 +66,8 @@ public class EffectWheel : MonoBehaviour
             arrowBase.Rotate(Vector3.up, curSpinSpeed);
             spinTimer += Time.deltaTime;
 
+            theWheel.Rotate(Vector3.up, -curSpinSpeed / 10);
+            
             if (curSpinSpeed == 0)
             {
                 animationDone = true;
