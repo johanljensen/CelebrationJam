@@ -8135,7 +8135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 155920100}
-  killCountText: {fileID: 0}
+  killCountText: {fileID: 230211214}
   pointsPerKill: 100
   showKillCounter: 1
 --- !u!4 &802212823
@@ -10339,7 +10339,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.29307583, g: 0.50569344, b: 0.6981132, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
