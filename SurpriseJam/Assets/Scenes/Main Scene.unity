@@ -6828,6 +6828,11 @@ MonoBehaviour:
   effectTextPrefab: {fileID: 2521309241968344254, guid: 3948fbd8f9647cb4d9d0506cb04ea864, type: 3}
   effectPrefabs:
   - {fileID: 1988935273687650763, guid: d0027f30a9e422f49b4b0c66794fc768, type: 3}
+  - {fileID: 6568182205347123585, guid: b5b4f4b68b20a8040a6e4e3864a84d6d, type: 3}
+  - {fileID: 6809466820550021278, guid: 686cdde9a5737d6488139485f2e8bb2c, type: 3}
+  - {fileID: 3534918590357469523, guid: aec00d8a8341e0b439fa79182661a593, type: 3}
+  - {fileID: 8196462992153419912, guid: fd288ceb7925a3343b122ca212aece6f, type: 3}
+  - {fileID: 2105744403790442540, guid: 3717f98c5f80c6c40a630bb0cd2aeae8, type: 3}
 --- !u!4 &728216739
 Transform:
   m_ObjectHideFlags: 0
