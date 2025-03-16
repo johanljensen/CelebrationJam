@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
     float _speedAdjustment = 1;
 
+    [SerializeField] GameObject deadUI;
+    bool _dead = false;
+
     // No need to serialize this since we're using the singleton pattern
     private ScoreManager _scoreManager;
 
@@ -48,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_dead)
+            return;
         Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         _rb.linearVelocity = dir.normalized * _speed * _speedAdjustment;
@@ -120,11 +125,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     Vector3 feetDirection;
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(_body.transform.position, _body.transform.position +  feetDirection);
-    }
 
     void Shoot()
     {
@@ -170,8 +170,15 @@ public class PlayerController : MonoBehaviour
         _speedAdjustment = value;
     }
 
+    public void Dead()
+    {
+        deadUI.SetActive(true);
+    }
+
     public void TakeDamage(float damage)
     {
+        if (_dead)
+            return;
         _currentHealth -= damage;
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maximumHealth); // Prevent negative health
 
@@ -183,16 +190,17 @@ public class PlayerController : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            _dead = true;
+            _animator.SetBool("dead", true);
         }
     }
 
-
-    private void OnMouseDown() // "test" click on the priest and he takes Damage
+    /*private void OnMouseDown() // "test" click on the priest and he takes Damage
     {
         _currentHealth -= 10;
         _healthbar.SetHealth(_currentHealth, _maximumHealth);
-    }
+    }*/
 }
 
 
