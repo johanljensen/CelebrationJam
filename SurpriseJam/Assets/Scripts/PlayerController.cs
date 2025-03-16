@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private Healthbar _healthbar; 
     [SerializeField] private RectTransform _levelbar;
+    [SerializeField] private Animator _animator;
     float _speedAdjustment = 1;
 
     void Start()
@@ -43,8 +44,9 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
         _rb.linearVelocity = dir.normalized * _speed * _speedAdjustment;  // Fixed mistake: _rb.linearVelocity → _rb.velocity
-        RotateBody();
+        RotateBody(dir);
 
         if (_reloading)
         {
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void RotateBody()
+    void RotateBody(Vector3 playerDir)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float distance = 0.0f;
@@ -98,7 +100,25 @@ public class PlayerController : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             _body.transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+
+            feetDirection = (_body.transform.forward - playerDir).normalized;
+            float feetAngle = Mathf.Atan2(feetDirection.x, feetDirection.z) * Mathf.Rad2Deg;
+            _animator.SetFloat("dir",(feetAngle)/360f);
+            if (playerDir == Vector3.zero)
+            {
+                _animator.SetBool("Idle",true);
+            }
+            else
+            {
+                _animator.SetBool("Idle", false);
+            }
         }
+    }
+    Vector3 feetDirection;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(_body.transform.position, _body.transform.position +  feetDirection);
     }
 
     void Shoot()

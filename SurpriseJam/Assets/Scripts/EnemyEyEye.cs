@@ -34,9 +34,7 @@ public class EnemyEyEye : MonoBehaviour
             {
                 _deathFadeTimer += Time.fixedDeltaTime;
                 float t = 1 - (_deathFadeTimer/ _deathFadeTime);
-                print("t" +t);
                 Color col= new Color(1, 1, 1, t);
-                print(col);
                 _meshRend.material.color = col;
 
                 if (t <= 0)
