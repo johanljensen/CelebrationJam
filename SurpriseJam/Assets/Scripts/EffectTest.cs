@@ -10,6 +10,10 @@ public class EffectTest : MonoBehaviour
     {
         Debug.Log(other.name);
 
-        Instantiate(thisEffect).ActivateEffect(true, FindFirstObjectByType<PlayerController>().transform, transform.position);
+        if (other.GetComponent<PlayerController>() || other.GetComponent<EnemyEyEye>())
+        {
+            Instantiate(thisEffect).ActivateEffect(true, FindFirstObjectByType<PlayerController>().transform,
+                transform.position);
+        }
     }
 }
