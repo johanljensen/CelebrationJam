@@ -8,16 +8,24 @@ public class EffectBox : MonoBehaviour
 
     [SerializeField] private Transform wheelPrefab;
     [SerializeField] private float fadeOutTime;
-    
+
+    bool noMoreTouching = false;
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.transform.name + " touched me!");
-        
-        EffectWheel wheel = Instantiate(wheelPrefab, transform.position, Quaternion.identity).GetComponent<EffectWheel>();
-        wheel.GoodWheel(other.GetComponent<PlayerController>() != null, other.transform);
-        
-        DeleteME();
+        if (noMoreTouching)
+            return;
+
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+            Debug.Log(other.transform.name + " touched me!");
+
+            EffectWheel wheel = Instantiate(wheelPrefab, transform.position, Quaternion.identity).GetComponent<EffectWheel>();
+            wheel.GoodWheel(other.GetComponent<PlayerController>() != null, other.transform);
+
+            DeleteME();
+            noMoreTouching = true;
+        }
     }
 
     private void DeleteME()

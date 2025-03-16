@@ -44,6 +44,15 @@ public class EnemySpammer : MonoBehaviour
         return new Vector3(xPos,yPos, 10f);
     }
 
+    public float GetSpawnTime()
+    {
+        return _timeBeforeSpawn;
+    }
+    public void SetSpawnTime(float spawnTime)
+    {
+        _timeBeforeSpawn = spawnTime;
+    }
+
     void SpawnEnemy()
     {
         var instEnemy = Instantiate(_enemyPrefab);

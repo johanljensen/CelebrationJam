@@ -14,6 +14,9 @@ public class Eff_RingOfFire : Effect
     // Update is called once per frame
     void Update()
     {
+        if (!fireRing)
+            Destroy(gameObject);
+
         fireRing.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
         
         lifetime += Time.deltaTime;

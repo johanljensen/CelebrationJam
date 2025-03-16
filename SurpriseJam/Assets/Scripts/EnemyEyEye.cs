@@ -77,6 +77,9 @@ public class EnemyEyEye : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
+            LevelHandler levelHandler = FindFirstObjectByType<LevelHandler>();
+            if (levelHandler)
+                levelHandler.EnemyDied();
             //StartCoroutine(DieNextFrame());
             _animator.SetBool("Death", true);
             _collider.enabled = false;

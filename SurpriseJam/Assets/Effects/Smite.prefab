@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectName: Smite
+  lightningSmite: {fileID: 5047452417195645271, guid: e16589ae95e3cb547b4c15d4dbc49b74, type: 3}
+  duration: 12
+  fadeTime: 1

@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _body;
     [SerializeField] private LineRenderer _shootLine;
     [SerializeField] private Transform _gunEnd;
-    [SerializeField] private LevelHandler _levelHandler;
     [SerializeField] private float _shotDuration = 0.07f;
     
     [SerializeField] private Healthbar _healthbar; 
@@ -149,9 +148,6 @@ public class PlayerController : MonoBehaviour
                     if (_scoreManager != null)
                         _scoreManager.AddKill();
                     
-                    // Existing level handler logic
-                    if (_levelHandler)
-                        _levelHandler.EnemyDied();
                 }
             }
         }
