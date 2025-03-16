@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject deadUI;
     bool _dead = false;
 
+    [SerializeField] AudioSource[] _shootSounds;
+
     // No need to serialize this since we're using the singleton pattern
     private ScoreManager _scoreManager;
 
@@ -155,6 +157,7 @@ public class PlayerController : MonoBehaviour
         {
             _shootLine.SetPosition(1, _body.transform.position + _body.transform.forward * _shotLength);
         }
+        _shootSounds[UnityEngine.Random.Range(0,_shootSounds.Length)].Play();
 
         StartCoroutine(ShotEffect());
     }
