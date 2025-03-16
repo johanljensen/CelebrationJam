@@ -23,6 +23,8 @@ public class EnemyEyEye : MonoBehaviour
     float _deathFadeTimer = 0;
     bool fading;
 
+    float _speedAdjustment = 1;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -47,7 +49,7 @@ public class EnemyEyEye : MonoBehaviour
             Vector3 dir = _player.position - transform.position;
             Vector3 desiredPosition = transform.position + dir.normalized * Time.fixedDeltaTime * _speed;
 
-            _rb.linearVelocity = dir.normalized  * _speed;
+            _rb.linearVelocity = dir.normalized  * _speed  *_speedAdjustment;
 
             //Math to get angle
             float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
@@ -64,6 +66,11 @@ public class EnemyEyEye : MonoBehaviour
                 _player.GetComponent<PlayerController>().TakeDamage(_damage);
             }
         }
+    }
+
+    public void ChangeSpeedAdjustment(float value)
+    {
+        _speedAdjustment = value;
     }
 
     public bool TakeDamage(float damage)
