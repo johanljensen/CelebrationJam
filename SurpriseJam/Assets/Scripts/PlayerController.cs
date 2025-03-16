@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     // No need to serialize this since we're using the singleton pattern
     private ScoreManager _scoreManager;
 
+    [SerializeField] EnemySpammer enemySPammer;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -195,6 +197,7 @@ public class PlayerController : MonoBehaviour
         {
             //gameObject.SetActive(false);
             _dead = true;
+            enemySPammer.enabled = false;
             _animator.SetBool("dead", true);
         }
     }

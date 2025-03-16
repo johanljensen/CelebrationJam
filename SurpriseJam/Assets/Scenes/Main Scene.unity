@@ -14726,8 +14726,8 @@ MonoBehaviour:
   _timeBeforeSpawn: 2
   _enemyPrefab: {fileID: 5927138070721468951, guid: 4242b2c017139e64da9b5d982f109505, type: 3}
   player: {fileID: 1960614877}
-  lrWallsMinMax: {x: 0, y: 0}
-  udWallsMinMax: {x: 0, y: 0}
+  lrWallsMinMax: {x: -60, y: 7}
+  udWallsMinMax: {x: -45, y: 85}
 --- !u!4 &1324963563
 Transform:
   m_ObjectHideFlags: 0
@@ -21605,6 +21605,10 @@ PrefabInstance:
       propertyPath: deadUI
       value: 
       objectReference: {fileID: 20511807}
+    - target: {fileID: 1565132845624820181, guid: 46f587ef39d95624f85fe8d0df61e4af, type: 3}
+      propertyPath: enemySPammer
+      value: 
+      objectReference: {fileID: 1324963562}
     - target: {fileID: 4449397842986076332, guid: 46f587ef39d95624f85fe8d0df61e4af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
