@@ -9,6 +9,9 @@ public class LightningSmite : MonoBehaviour
     int index = 0;
     [SerializeField] float timeBetweenStrikes = 0.5f;
     float timer = 0;
+
+    [SerializeField] private AudioSource lightningAudio;
+    
     public void SetAllegiance(bool playerFriendly)
     {
         isPlayerFriendly = playerFriendly;
@@ -30,6 +33,8 @@ public class LightningSmite : MonoBehaviour
                 index = 0;
 
             lightning[index].SetActive(true);
+            lightningAudio.Play();
+            
             StartCoroutine(DespawnLightning(index));
             timer = 0;
         }
