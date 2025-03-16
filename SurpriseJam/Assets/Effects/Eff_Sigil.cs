@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,11 +14,12 @@ public class Eff_Sigil : Effect
     
     [SerializeField] private float slowFactor;
     private bool isPlayerFriendly;
-    
+    private List<Transform> slowTargets;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        slowTargets = new List<Transform>();
         lifetime = 0;
     }
 
@@ -39,6 +41,7 @@ public class Eff_Sigil : Effect
 
         if (lifetime >= duration)
         {
+            WipeEffect();
             Destroy(gameObject);
         }
     }
@@ -57,7 +60,8 @@ public class Eff_Sigil : Effect
             EnemyEyEye enemy = other.GetComponent<EnemyEyEye>();
             if (enemy != null)
             {
-                //SLOW THAT ENEMY
+                enemy.ChangeSpeedAdjustment(slowFactor);
+                slowTargets.Add(enemy.transform);
             }
         }
         else if (!isPlayerFriendly)
@@ -65,7 +69,8 @@ public class Eff_Sigil : Effect
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
-                //SLOW THAT PLAYER
+                player.ChangeSpeedAdjustment(slowFactor);
+                slowTargets.Add(player.transform);
             }
         }
     }
@@ -77,7 +82,8 @@ public class Eff_Sigil : Effect
             EnemyEyEye enemy = other.GetComponent<EnemyEyEye>();
             if (enemy != null)
             {
-                //unSLOW THAT ENEMY
+                enemy.ChangeSpeedAdjustment(1);
+                slowTargets.Remove(enemy.transform);
             }
         }
         else if (!isPlayerFriendly)
@@ -85,7 +91,32 @@ public class Eff_Sigil : Effect
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
-                //unSLOW THAT PLAYER
+                player.ChangeSpeedAdjustment(1);
+                slowTargets.Remove(player.transform);
+            }
+        }
+    }
+
+    private void WipeEffect()
+    {
+        if (isPlayerFriendly)
+        {
+            foreach (Transform slowEnemy in slowTargets)
+            {
+                if (slowEnemy != null)
+                {
+                    slowEnemy.GetComponent<EnemyEyEye>().ChangeSpeedAdjustment(1);
+                }
+            }
+        }
+        else
+        {
+            foreach (Transform slowPlayer in slowTargets)
+            {
+                if (slowPlayer != null)
+                {
+                    slowPlayer.GetComponent<PlayerController>().ChangeSpeedAdjustment(1);
+                }
             }
         }
     }
