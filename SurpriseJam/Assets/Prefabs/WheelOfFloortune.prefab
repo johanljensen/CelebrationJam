@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theWheel: {fileID: 3228344018522825213}
-  spinTime: 5
+  spinTime: 3
   spinSpeed: 5
   arrowBase: {fileID: 6617187905764166774}
   spinSpeedCurve:

@@ -1274,7 +1274,7 @@ GameObject:
   - component: {fileID: 824983053}
   - component: {fileID: 824983055}
   m_Layer: 0
-  m_Name: EffectTest_Wet
+  m_Name: EffectTest_Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65925e709f179724d804f507ff89e562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisEffect: {fileID: 1142966128585633722, guid: 2e7c93cc2d5808a40a488de8873c872e, type: 3}
+  thisEffect: {fileID: -4813232041238697513, guid: 686cdde9a5737d6488139485f2e8bb2c, type: 3}
 --- !u!4 &824983054
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Holy Water
+  m_text: Holy Light
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2937,7 +2937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &2102899266
 Light:
   m_ObjectHideFlags: 0
