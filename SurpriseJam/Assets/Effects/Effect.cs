@@ -9,5 +9,5 @@ public abstract class Effect : MonoBehaviour
         return EffectName;
     }
 
-    public abstract void ActivateEffect(bool playerFriendly, Transform activaterCharacter);
+    public abstract void ActivateEffect(bool playerFriendly, Transform activatorCharacter, Vector3 wheelPosition);
 }
