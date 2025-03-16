@@ -16,7 +16,7 @@ public class Eff_Wall : Effect
 
     public string EffectName { get; }
 
-    public override void ActivateEffect(bool playerFriendly, Transform activaterCharacter)
+    public override void ActivateEffect(bool playerFriendly, Transform activatorCharacter, Vector3 wheelPosition)
     {
         Debug.LogWarning(GetType());
     }

@@ -14,7 +14,7 @@ public class EffectManager : MonoBehaviour
         randomEffect = Instantiate(randomEffect);
         
         Effect theEffect = randomEffect.GetComponent<Effect>();
-        theEffect.ActivateEffect(playerFriendly, activatorTransform);
+        theEffect.ActivateEffect(playerFriendly, activatorTransform, wheelPosition);
         
         Transform effectText = Instantiate(effectTextPrefab, wheelPosition, Quaternion.identity);
         effectText.GetComponent<EffectText>().SetText(theEffect.GetName());

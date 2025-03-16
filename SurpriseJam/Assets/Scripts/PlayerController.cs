@@ -11,15 +11,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _shotLength;
     [SerializeField] private float _hitForce = 100f;
+    [SerializeField] private float _timeBetweenShots = 0.25f;
+    private float _shotTimer = 0;
+    [SerializeField] private float _reloadTime = 1f;
+    [SerializeField] private int _ammoAmount = 8;
+    int _shots = 0;
+    bool _reloading = false;
 
     Plane _plane = new Plane(Vector3.up, Vector3.zero);
     [SerializeField] private GameObject _body;
     [SerializeField] private LineRenderer _shootLine;
     [SerializeField] private Transform _gunEnd;
     [SerializeField] private LevelHandler _levelHandler;
-    [SerializeField] private float shotDuration = 0.07f;
+    [SerializeField] private float _shotDuration = 0.07f;
     
-    [SerializeField] private Healthbar _healthbar;
+    [SerializeField] private Healthbar _healthbar; 
+    [SerializeField] private RectTransform _levelbar;
+    float _speedAdjustment = 1;
 
     void Start()
     {
@@ -35,12 +43,42 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        _rb.linearVelocity = dir.normalized * _speed;  // Fixed mistake: _rb.linearVelocity → _rb.velocity
+        _rb.linearVelocity = dir.normalized * _speed * _speedAdjustment;  // Fixed mistake: _rb.linearVelocity → _rb.velocity
         RotateBody();
 
-        if (Input.GetMouseButtonDown(0))
+        if (_reloading)
         {
-            Shoot();
+            _shotTimer += Time.fixedDeltaTime;
+            float t = _shotTimer / _reloadTime;
+            _levelbar.localScale = new Vector3(t, 1f, 1f);
+
+            if (_shotTimer >= _reloadTime)
+            {
+                _levelbar.gameObject.SetActive(false);
+                _reloading = false;
+            }
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (_reloading)
+                return;
+
+            _shotTimer += Time.fixedDeltaTime;
+            if (_shotTimer >= _timeBetweenShots)
+            {
+                Shoot();
+                _shots++;
+                _shotTimer = 0;
+
+                if (_shots > _ammoAmount)
+                {
+                    _shots = 0;
+                    _reloading = true;
+                    _levelbar.gameObject.SetActive(true);
+                    _levelbar.localScale = new Vector3(0, 1f, 1f);
+                }
+            }
         }
     }
 
@@ -97,8 +135,12 @@ public class PlayerController : MonoBehaviour
     private IEnumerator ShotEffect()
     {
         _shootLine.enabled = true;
-        yield return new WaitForSeconds(shotDuration);
+        yield return new WaitForSeconds(_shotDuration);
         _shootLine.enabled = false;
+    }
+    public void ChangeSpeedAdjustment(float value)
+    {
+        _speedAdjustment = value;
     }
 
     public void TakeDamage(float damage)
