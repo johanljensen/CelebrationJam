@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class EnemySpammer : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class EnemySpammer : MonoBehaviour
     Plane _plane = new Plane(Vector3.up, Vector3.zero);
 
     [SerializeField] Transform player;
+
+    [SerializeField] Vector2 lrWallsMinMax;
+    [SerializeField] Vector2 udWallsMinMax;
 
     // Update is called once per frame
     void Update()
@@ -30,16 +35,56 @@ public class EnemySpammer : MonoBehaviour
         float yPos;
         int chosenSide = Random.Range(0, 2);
 
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(1.1f, 1.1f, 10f));
+        float distance = 0.0f;
+        if (_plane.Raycast(ray, out distance))
+        {
+            //Get the point that is clicked
+            Vector3 hitPoint = ray.GetPoint(distance);
+
+            print("Check");
+            if (hitPoint.x > lrWallsMinMax.y && chosenAxis == 0)
+            {
+                chosenSide = 0;
+            }
+            if (hitPoint.z > udWallsMinMax.y && chosenAxis == 1)
+            {
+                chosenSide = 0;
+            }
+        }
+
+        ray = Camera.main.ViewportPointToRay(new Vector3(-.1f, -.1f, 10f));
+        if (_plane.Raycast(ray, out distance))
+        {
+            //Get the point that is clicked
+            Vector3 hitPoint = ray.GetPoint(distance);
+
+            print("Check");
+            if (hitPoint.x < lrWallsMinMax.x && chosenAxis == 0)
+            {
+                chosenSide = 1;
+            }
+            if (hitPoint.z < udWallsMinMax.x && chosenAxis == 1)
+            {
+                chosenSide = 1;
+            }
+        }
+
+
         if (chosenAxis == 0)
         {
             yPos = Random.Range(-0.1f, 1.1f);
             xPos = chosenSide == 0 ? -0.1f : 1.1f; // 0 - Left side, 1 - Right side
+
         }
         else
         {
             xPos = Random.Range(-0.1f, 1.1f);
-            yPos = chosenSide == 0 ? -0.1f : 1.1f; // 0 - Left side, 1 - Right side
+            yPos = chosenSide == 0 ? -0.1f : 1.1f; // 0 - down side, 1 - up side
+
         }
+
+        print(chosenAxis + " , " + chosenSide);
 
         return new Vector3(xPos,yPos, 10f);
     }
@@ -62,7 +107,6 @@ public class EnemySpammer : MonoBehaviour
         float distance = 0.0f;
         if (_plane.Raycast(ray, out distance))
         {
-
             //Get the point that is clicked
             Vector3 hitPoint = ray.GetPoint(distance);
 

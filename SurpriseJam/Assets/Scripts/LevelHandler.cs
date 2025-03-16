@@ -51,7 +51,7 @@ public class LevelHandler : MonoBehaviour
         if (_experience >= _xpToLevelUp)
         {
             _experience -= _xpToLevelUp;
-            _xpToLevelUp += _level;
+            _xpToLevelUp += 2;
 
             _curOrtoSize = Mathf.Lerp(_orthoSizeMinMax.x, _orthoSizeMinMax.y, (float)_level / _maxOrthoLevel);
             _nextOrtoSize = Mathf.Lerp(_orthoSizeMinMax.x, _orthoSizeMinMax.y, ((float)_level + 1) / _maxOrthoLevel);

@@ -73,6 +73,8 @@ public class EnemyEyEye : MonoBehaviour
 
     public bool TakeDamage(float damage)
     {
+        if (_dead)
+            return false;
 
         _health -= damage;
         if (_health <= 0)
